@@ -23,8 +23,8 @@ exports.Query = function(args) {
 
         return new Type(
             Object.assign({}, args, {
-                resolvers,
-                name
+                resolvers: resolvers,
+                name: name
             })
         );
     }

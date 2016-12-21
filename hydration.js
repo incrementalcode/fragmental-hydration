@@ -82,8 +82,8 @@ function _hydrate(object, objectType, fragment, store, cacheString) {
 
     // If we can cache, send back the cached object.
     if (canCache && cacheString in cache)
-        return { hydrated: cache[cacheString], canCache }
+        return { hydrated: cache[cacheString], canCache: canCache }
 
     cache[cacheString] = hydrated;
-    return { hydrated, canCache: false };
+    return { hydrated: hydrated, canCache: false };
 }
