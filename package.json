@@ -1,0 +1,23 @@
+{
+  "name": "fragmental-hydration",
+  "version": "1.0.0",
+  "description": "A container hydration library for resolvers acting on normalised stores, inspired by Relay.",
+  "main": "hydration.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incrementalcode/fragmental-hydration.git"
+  },
+  "keywords": [
+    "hydration",
+    "relay",
+    "fragmental",
+    "store",
+    "data"
+  ],
+  "author": "Incremental",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/incrementalcode/fragmental-hydration/issues"
+  },
+  "homepage": "https://github.com/incrementalcode/fragmental-hydration#readme"
+}
