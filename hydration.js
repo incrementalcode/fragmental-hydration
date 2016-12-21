@@ -1,7 +1,10 @@
+exports.Query = require('./queries').Query;
+exports.Type = require('./types').Type;
+
 const cache = {};
 
 // Hydrate the given type from the store using the fragment specification.
-export default function hydrate(type, fragment, store) {
+exports.hydrate = function hydrate(type, fragment, store) {
     if (!type) console.warn("hydrate() called with a null query type.");
     if (!fragment) console.warn("hydrate() called with a null fragment.");
     if (!store) console.warn("hydrate() called with a null store.");
@@ -21,8 +24,13 @@ function _hydrate(object, objectType, fragment, store, cacheString) {
     // Note that even with caching we still have to run this computation,
     // as we could have nested children who have changed and we have no
     // idea at this stage whether this is the case.
-    for (let key of Object.keys(fragment)) {
-        let result;
+    var result;
+    var childCacheString;
+    var hydratedChild;
+    var keys = Object.keys(fragment), key;
+    for (var keyN in keys) {
+        key = keys[keyN];
+
         try {
             result = objectType.resolve(object, key, store)
         } catch(e) {
@@ -45,26 +53,25 @@ function _hydrate(object, objectType, fragment, store, cacheString) {
         // There is the possibility of type being null, which means one of two things:
         //   1) the resolved value is a scalar, in which case we can't go deeper.
         //   2) the resolved value was returned as null, in which case we can't.
-        let {type, resolved} = result;
-        if (type != null && fragment[key] && typeof fragment[key] === 'object') {
-            let childCacheString = cacheString + '-' + key;
+        if (result.type != null && fragment[key] && typeof fragment[key] === 'object') {
+            childCacheString = cacheString + '-' + key;
 
-            if (resolved.constructor === Array) {
-                let hydratedChildren = resolved.map((value) => _hydrate(value, type, fragment[key], store, childCacheString));
+            if (result.resolved.constructor === Array) {
+                hydratedChild = result.resolved.map((value) => _hydrate(value, result.type, fragment[key], store, childCacheString));
 
-                hydrated[key] = hydratedChildren
+                hydrated[key] = hydratedChild
                     .map((value) => value.hydrated);
-                canCache = hydratedChildren
+                canCache = hydratedChild
                     .map((value) => value.canCache)
                     .reduce((x, y) => x && y, canCache);
             } else {
-                let hydratedChild = _hydrate(resolved, type, fragment[key], store, childCacheString);
+                let hydratedChild = _hydrate(result.resolved, result.type, fragment[key], store, childCacheString);
 
                 hydrated[key] = hydratedChild.hydrated;
                 canCache = canCache && hydratedChild.canCache;
             }
         } else {
-            hydrated[key] = resolved;
+            hydrated[key] = result.resolved;
         }
     }
 

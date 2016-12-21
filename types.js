@@ -1,4 +1,6 @@
-export var Type = function(args) {
+exports.Type = Type;
+
+function Type(args) {
     Object.assign(this, args);
 }
 

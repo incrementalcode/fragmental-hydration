@@ -1,23 +1,26 @@
 {
-  "name": "fragmental-hydration",
-  "version": "1.0.0",
+  "name": "mental-hydration",
+  "version": "1.0.1",
   "description": "A container hydration library for resolvers acting on normalised stores, inspired by Relay.",
   "main": "hydration.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/incrementalcode/fragmental-hydration.git"
+    "url": "git+https://github.com/incrementalcode/mental-hydration.git"
   },
   "keywords": [
     "hydration",
     "relay",
+    "redux",
+    "react",
     "fragmental",
+    "mental",
     "store",
     "data"
   ],
   "author": "Incremental",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/incrementalcode/fragmental-hydration/issues"
+    "url": "https://github.com/incrementalcode/mental-hydration/issues"
   },
-  "homepage": "https://github.com/incrementalcode/fragmental-hydration#readme"
+  "homepage": "https://github.com/incrementalcode/mental-hydration#readme"
 }

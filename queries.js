@@ -1,6 +1,6 @@
-import { Type } from './types';
+var Type = require('./types').Type;
 
-export var Query = function(args) {
+exports.Query = function(args) {
     // We need a name to create a unique identifier for this query for caching purposes.
     // If one isn't provided, we'll just use a random string.
     var baseName = args.name || ('QUERY[' + Math.random().toString() + ']');
