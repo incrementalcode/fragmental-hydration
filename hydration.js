@@ -65,7 +65,7 @@ function _hydrate(object, objectType, fragment, store, cacheString) {
                     .map(function(value) { return value.canCache; })
                     .reduce(function(x, y) { return x && y }, canCache);
             } else {
-                let hydratedChild = _hydrate(result.resolved, result.type, fragment[key], store, childCacheString);
+                var hydratedChild = _hydrate(result.resolved, result.type, fragment[key], store, childCacheString);
 
                 hydrated[key] = hydratedChild.hydrated;
                 canCache = canCache && hydratedChild.canCache;
