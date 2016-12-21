@@ -1,6 +1,6 @@
 {
   "name": "mental-hydration",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A container hydration library for resolvers acting on normalised stores, inspired by Relay.",
   "main": "hydration.js",
   "repository": {
