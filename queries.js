@@ -9,13 +9,13 @@ exports.Query = function(args) {
         var name = baseName;
         Object
             .keys(parameters || {})
-            .map((key) => { name += '(' + key + ':' + parameters[key] + ')' });
+            .map(function(key) { return name += '(' + key + ':' + parameters[key] + ')' });
 
         // Create paramterised resolver functions.
         var resolvers = {};
         Object
             .keys(args.resolvers || {})
-            .map((key) => {
+            .map(function (key) {
                 resolvers[key] = function(obj, store) {
                     return args.resolvers[key](obj, store, parameters);
                 }
