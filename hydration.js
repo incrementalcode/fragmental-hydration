@@ -57,13 +57,13 @@ function _hydrate(object, objectType, fragment, store, cacheString) {
             childCacheString = cacheString + '-' + key;
 
             if (result.resolved.constructor === Array) {
-                hydratedChild = result.resolved.map((value) => _hydrate(value, result.type, fragment[key], store, childCacheString));
+                hydratedChild = result.resolved.map(function(value) { return _hydrate(value, result.type, fragment[key], store, childCacheString); });
 
                 hydrated[key] = hydratedChild
-                    .map((value) => value.hydrated);
+                    .map(function(value) { return value.hydrated; });
                 canCache = hydratedChild
-                    .map((value) => value.canCache)
-                    .reduce((x, y) => x && y, canCache);
+                    .map(function(value) { return value.canCache; })
+                    .reduce(function(x, y) { return x && y }, canCache);
             } else {
                 let hydratedChild = _hydrate(result.resolved, result.type, fragment[key], store, childCacheString);
 
